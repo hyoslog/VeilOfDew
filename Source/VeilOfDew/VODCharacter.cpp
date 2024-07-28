@@ -1,15 +1,28 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "VODCharacter.h"
-#include "Engine/LocalPlayer.h"
+// Default
+
+// C++ Standard Library
+
+// Third-party Library
+
+// Unreal Engine
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "GameFramework/SpringArmComponent.h"
-#include "GameFramework/Controller.h"
+#include "Engine/LocalPlayer.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "GameFramework/Controller.h"
+#include "GameFramework/SpringArmComponent.h"
 #include "InputActionValue.h"
+
+// Project-specific
+#include "AbilitySystem/Attributes/VODAttributeSet_Character.h"
+#include "AbilitySystem/VODAbilitySystemComponent.h"
+
+// Local
+#include "VODCharacter.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -52,12 +65,32 @@ AVODCharacter::AVODCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+
+	AbilitySystemComponent = CreateDefaultSubobject<UVODAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	check(AbilitySystemComponent);
+
+	CharacterSet = CreateDefaultSubobject<UVODAttributeSet_Character>(TEXT("CharacterSet"));	
+	check(CharacterSet);
 }
 
 void AVODCharacter::BeginPlay()
 {
-	// Call the base class  
 	Super::BeginPlay();
+
+	check(AbilitySystemComponent);
+	check(CharacterSet);
+
+	auto* CharMovement = GetCharacterMovement();
+	check(CharMovement);
+	CharMovement->MaxWalkSpeed *= CharacterSet->GetMoveSpeedRate();
+}
+
+void AVODCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+
+	AbilitySystemComponent = nullptr;
+	CharacterSet = nullptr;
 }
 
 //////////////////////////////////////////////////////////////////////////

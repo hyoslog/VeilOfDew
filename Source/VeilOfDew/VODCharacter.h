@@ -45,29 +45,33 @@ class AVODCharacter : public ACharacter
 	UInputAction* LookAction;
 
 public:
-	AVODCharacter();
-	
+	AVODCharacter();	
 
 protected:
-
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
 
 	/** Called for looking input */
-	void Look(const FInputActionValue& Value);
-			
+	void Look(const FInputActionValue& Value);			
 
 protected:
 	// APawn interface
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	
-	// To add mapping context
-	virtual void BeginPlay();
+	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 public:
 	/** Returns CameraBoom subobject **/
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	/** Returns FollowCamera subobject **/
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
+
+private:
+	UPROPERTY(Transient)
+	TObjectPtr<const class UVODAbilitySystemComponent> AbilitySystemComponent;
+
+	UPROPERTY(Transient)
+	TObjectPtr<const class UVODAttributeSet_Character> CharacterSet;
 };
 
