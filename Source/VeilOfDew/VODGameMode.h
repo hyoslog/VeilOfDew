@@ -4,15 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "VeilOfDewGameMode.generated.h"
+#include "VODGameMode.generated.h"
 
 UCLASS(minimalapi)
-class AVeilOfDewGameMode : public AGameModeBase
+class AVODGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
 
 public:
-	AVeilOfDewGameMode();
+	AVODGameMode();
 };
 
 

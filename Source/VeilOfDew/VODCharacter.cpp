@@ -1,6 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
-#include "VeilOfDewCharacter.h"
+#include "VODCharacter.h"
 #include "Engine/LocalPlayer.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -14,9 +14,9 @@
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
 //////////////////////////////////////////////////////////////////////////
-// AVeilOfDewCharacter
+// AVODCharacter
 
-AVeilOfDewCharacter::AVeilOfDewCharacter()
+AVODCharacter::AVODCharacter()
 {
 	// Set size for collision capsule
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -54,7 +54,7 @@ AVeilOfDewCharacter::AVeilOfDewCharacter()
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
 }
 
-void AVeilOfDewCharacter::BeginPlay()
+void AVODCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
@@ -63,7 +63,7 @@ void AVeilOfDewCharacter::BeginPlay()
 //////////////////////////////////////////////////////////////////////////
 // Input
 
-void AVeilOfDewCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
+void AVODCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	// Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
@@ -82,10 +82,10 @@ void AVeilOfDewCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 
 		// Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AVeilOfDewCharacter::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AVODCharacter::Move);
 
 		// Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AVeilOfDewCharacter::Look);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AVODCharacter::Look);
 	}
 	else
 	{
@@ -93,7 +93,7 @@ void AVeilOfDewCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInput
 	}
 }
 
-void AVeilOfDewCharacter::Move(const FInputActionValue& Value)
+void AVODCharacter::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
@@ -116,7 +116,7 @@ void AVeilOfDewCharacter::Move(const FInputActionValue& Value)
 	}
 }
 
-void AVeilOfDewCharacter::Look(const FInputActionValue& Value)
+void AVODCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
