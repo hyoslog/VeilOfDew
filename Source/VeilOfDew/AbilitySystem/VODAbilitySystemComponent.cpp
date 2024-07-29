@@ -1,4 +1,5 @@
 ﻿// Default
+#include "VODAbilitySystemComponent.h"
 
 // C++ Standard Library
 
@@ -9,4 +10,3 @@
 // Project-specific
 
 // Local
-#include "VODAbilitySystemComponent.h"

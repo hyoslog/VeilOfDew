@@ -1,4 +1,5 @@
 ﻿// Default
+#include "VODAttributeSet.h"
 
 // C++ Standard Library
 
@@ -9,4 +10,3 @@
 // Project-specific
 
 // Local
-#include "VODAttributeSet.h"

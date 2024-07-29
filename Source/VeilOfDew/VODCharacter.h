@@ -44,6 +44,10 @@ class AVODCharacter : public ACharacter
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	UInputAction* LookAction;
 
+	/** Run Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	UInputAction* RunAction;
+
 public:
 	AVODCharacter();	
 
@@ -52,7 +56,11 @@ protected:
 	void Move(const FInputActionValue& Value);
 
 	/** Called for looking input */
-	void Look(const FInputActionValue& Value);			
+	void Look(const FInputActionValue& Value);		
+
+	/** Called for run input */
+	void Run();
+	void StopRun();
 
 protected:
 	// APawn interface

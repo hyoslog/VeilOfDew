@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 // Default
+#include "VODCharacter.h"
 
 // C++ Standard Library
 
@@ -22,7 +23,6 @@
 #include "AbilitySystem/VODAbilitySystemComponent.h"
 
 // Local
-#include "VODCharacter.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -119,6 +119,10 @@ void AVODCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 
 		// Looking
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AVODCharacter::Look);
+
+		// Run
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &AVODCharacter::Run);
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &AVODCharacter::StopRun);
 	}
 	else
 	{
@@ -160,4 +164,12 @@ void AVODCharacter::Look(const FInputActionValue& Value)
 		AddControllerYawInput(LookAxisVector.X);
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void AVODCharacter::Run()
+{
+}
+
+void AVODCharacter::StopRun()
+{
 }
