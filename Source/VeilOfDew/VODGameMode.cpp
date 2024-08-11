@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "VODGameMode.h"
-#include "VODCharacter.h"
+#include "Character/VODCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 AVODGameMode::AVODGameMode()
