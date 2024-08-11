@@ -9,11 +9,11 @@
 
 // Unreal Engine
 #include "AbilitySystemComponent.h"
+#include "VODAttributeSet.h"
 
 // Project-specific
 
 // Local
-#include "VODAttributeSet.h"
 
 // Last
 #include "VODAttributeSet_Character.generated.h"

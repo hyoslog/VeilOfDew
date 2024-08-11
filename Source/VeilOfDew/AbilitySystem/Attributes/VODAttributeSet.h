@@ -8,11 +8,11 @@
 // Third-party Library
 
 // Unreal Engine
+#include "AttributeSet.h"
 
 // Project-specific
 
 // Local
-#include "AttributeSet.h"
 
 // Last
 #include "VODAttributeSet.generated.h"
