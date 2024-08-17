@@ -10,9 +10,6 @@ UCLASS(minimalapi)
 class AVODGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-
-public:
-	AVODGameMode();
 };
 
 
