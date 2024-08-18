@@ -22,7 +22,7 @@ class VEILOFDEW_API UVODPawnData : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 
-protected:
+public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Gameplay Ability")
 	TArray<TObjectPtr<class UVODAbilitySet>> AbilitySets;
 };

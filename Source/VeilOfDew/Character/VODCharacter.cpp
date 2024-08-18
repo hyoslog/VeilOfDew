@@ -10,14 +10,15 @@
 #include "Engine/LocalPlayer.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-#include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "GameplayEffect.h"
 #include "InputActionValue.h"
 
 // Project-specific
-#include "AbilitySystem/Attributes/VODAttributeSet_Character.h"
+#include "AbilitySystem/VODAbilitySet.h"
 #include "AbilitySystem/VODAbilitySystemComponent.h"
+#include "Pawn/VODPawnData.h"
 
 // Local
 
@@ -35,20 +36,27 @@ AVODCharacter::AVODCharacter()
 
 	AbilitySystemComponent = CreateDefaultSubobject<UVODAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	check(AbilitySystemComponent);
-
-	CharacterSet = CreateDefaultSubobject<UVODAttributeSet_Character>(TEXT("CharacterSet"));	
-	check(CharacterSet);
 }
 
 void AVODCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
-	check(CharacterSet);
+	check(AbilitySystemComponent);
+	
+	if (IsValid(PawnData) == false)
+	{
+		ensure(false);
+		return;
+	}
 
-	auto* CharMovement = GetCharacterMovement();
-	check(CharMovement);
-	CharMovement->MaxWalkSpeed *= CharacterSet->GetMoveSpeedRate();
+	for (const UVODAbilitySet* const AbilitySet : PawnData->AbilitySets)
+	{
+		if (ensure(IsValid(AbilitySet)))
+		{
+			AbilitySet->GiveToAbilitySystem(AbilitySystemComponent, nullptr, nullptr);
+		}
+	}
 }
 
 void AVODCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -56,7 +64,6 @@ void AVODCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	Super::EndPlay(EndPlayReason);
 
 	AbilitySystemComponent = nullptr;
-	CharacterSet = nullptr;
 }
 
 void AVODCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -82,7 +89,7 @@ void AVODCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	{
 		ensure(false);
 		return;
-	}
+	} 
 
 	EnhancedInputSubsystem->AddMappingContext(DefaultMappingContext, 0);
 
