@@ -16,9 +16,6 @@
 #include "InputActionValue.h"
 
 // Project-specific
-#include "AbilitySystem/VODAbilitySet.h"
-#include "AbilitySystem/VODAbilitySystemComponent.h"
-#include "Pawn/VODPawnData.h"
 
 // Local
 
@@ -32,38 +29,7 @@ AVODCharacter::AVODCharacter()
 
 	FollowCameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCameraComponent"));
 	check(FollowCameraComponent);
-	FollowCameraComponent->SetupAttachment(SpringArmComponent, USpringArmComponent::SocketName);
-
-	AbilitySystemComponent = CreateDefaultSubobject<UVODAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
-	check(AbilitySystemComponent);
-}
-
-void AVODCharacter::BeginPlay()
-{
-	Super::BeginPlay();
-
-	check(AbilitySystemComponent);
-	
-	if (IsValid(PawnData) == false)
-	{
-		ensure(false);
-		return;
-	}
-
-	for (const UVODAbilitySet* const AbilitySet : PawnData->AbilitySets)
-	{
-		if (ensure(IsValid(AbilitySet)))
-		{
-			AbilitySet->GiveToAbilitySystem(AbilitySystemComponent, nullptr, nullptr);
-		}
-	}
-}
-
-void AVODCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
-{
-	Super::EndPlay(EndPlayReason);
-
-	AbilitySystemComponent = nullptr;
+	FollowCameraComponent->SetupAttachment(SpringArmComponent, USpringArmComponent::SocketName);	
 }
 
 void AVODCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

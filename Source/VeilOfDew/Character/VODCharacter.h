@@ -31,9 +31,6 @@ public:
 	inline class UCameraComponent* GetFollowCamera() const { return FollowCameraComponent; }
 
 protected:
-	virtual void BeginPlay() override;
-	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;	
 
 protected:
@@ -45,9 +42,6 @@ protected:
 	void StopRun();
 
 protected:
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Data")
-	TObjectPtr<const class UVODPawnData> PawnData;
-
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	TObjectPtr<class USpringArmComponent> SpringArmComponent;
 
@@ -68,8 +62,4 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<const class UInputAction> RunAction;
-
-private:
-	UPROPERTY(Transient)
-	TObjectPtr<class UVODAbilitySystemComponent> AbilitySystemComponent;
 };

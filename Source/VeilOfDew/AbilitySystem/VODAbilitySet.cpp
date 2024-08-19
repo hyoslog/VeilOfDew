@@ -13,7 +13,7 @@
 
 // Local
 
-void FVODAbilitySet_Handle::AddAbilitySpecHandle(const FGameplayAbilitySpecHandle& InHandle)
+void FAbilitySet_Handle::AddAbilitySpecHandle(const FGameplayAbilitySpecHandle& InHandle)
 {
 	if (ensure(InHandle.IsValid()))
 	{
@@ -21,7 +21,7 @@ void FVODAbilitySet_Handle::AddAbilitySpecHandle(const FGameplayAbilitySpecHandl
 	}
 }
 
-void FVODAbilitySet_Handle::AddGameplayEffectHandle(const FActiveGameplayEffectHandle& InHandle)
+void FAbilitySet_Handle::AddGameplayEffectHandle(const FActiveGameplayEffectHandle& InHandle)
 {
 	if (ensure(InHandle.IsValid()))
 	{
@@ -29,12 +29,12 @@ void FVODAbilitySet_Handle::AddGameplayEffectHandle(const FActiveGameplayEffectH
 	}
 }
 
-void FVODAbilitySet_Handle::AddAttributeSet(UAttributeSet* InSet)
+void FAbilitySet_Handle::AddAttributeSet(UAttributeSet* InSet)
 {
 	AttributeSets.Add(InSet);
 }
 
-void FVODAbilitySet_Handle::TakeFromAbilitySystem(UVODAbilitySystemComponent* InASC)
+void FAbilitySet_Handle::TakeFromAbilitySystem(UVODAbilitySystemComponent* InASC)
 {
 	check(InASC);
 
@@ -69,7 +69,7 @@ void FVODAbilitySet_Handle::TakeFromAbilitySystem(UVODAbilitySystemComponent* In
 	AttributeSets.Reset();
 }
 
-void UVODAbilitySet::GiveToAbilitySystem(UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle, UObject* InSourceObject) const
+void UVODAbilitySet::GiveToAbilitySystem(UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle, UObject* InSourceObject) const
 {
 	check(InASC);
 
@@ -83,7 +83,7 @@ void UVODAbilitySet::GiveToAbilitySystem(UVODAbilitySystemComponent* InASC, FVOD
 	ApplyAttributeSetDatas(InASC, InHandle);
 }
 
-void UVODAbilitySet::ApplyGameplayAbilityDatas(UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle, UObject* InSourceObject) const
+void UVODAbilitySet::ApplyGameplayAbilityDatas(UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle, UObject* InSourceObject) const
 {
 	for (const auto& AbilityData : GameplayAbilityDatas)
 	{
@@ -109,7 +109,7 @@ void UVODAbilitySet::ApplyGameplayAbilityDatas(UVODAbilitySystemComponent* InASC
 	}
 }
 
-void UVODAbilitySet::ApplyGameplayEffectDatas(class UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle) const
+void UVODAbilitySet::ApplyGameplayEffectDatas(class UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle) const
 {
 	for (const auto& EffectData : GameplayEffectDatas)
 	{
@@ -131,7 +131,7 @@ void UVODAbilitySet::ApplyGameplayEffectDatas(class UVODAbilitySystemComponent* 
 	}
 }
 
-void UVODAbilitySet::ApplyAttributeSetDatas(class UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle) const
+void UVODAbilitySet::ApplyAttributeSetDatas(class UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle) const
 {
 	for (const auto& SetData : AttributeSetDatas)
 	{

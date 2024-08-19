@@ -19,7 +19,7 @@
 #include "VODAbilitySet.generated.h"
 
 USTRUCT(BlueprintType)
-struct FVODGameplayAbilityData
+struct FGameplayAbilityData
 {
 	GENERATED_BODY()
 
@@ -35,7 +35,7 @@ public:
 };
 
 USTRUCT(BlueprintType)
-struct FVODGameplayEffectData
+struct FGameplayEffectData
 {
 	GENERATED_BODY()
 
@@ -48,7 +48,7 @@ public:
 };
 
 USTRUCT(BlueprintType)
-struct FVODGameplayAttributeSetData
+struct FGameplayAttributeSetData
 {
 	GENERATED_BODY()
 
@@ -58,7 +58,7 @@ public:
 };
 
 USTRUCT(BlueprintType)
-struct FVODAbilitySet_Handle
+struct FAbilitySet_Handle
 {
 	GENERATED_BODY()
 
@@ -86,20 +86,20 @@ class VEILOFDEW_API UVODAbilitySet : public UPrimaryDataAsset
 	GENERATED_BODY()
 
 public:
-	void GiveToAbilitySystem(class UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle, UObject* InSourceObject) const;
+	void GiveToAbilitySystem(class UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle, UObject* InSourceObject) const;
 
 private:
-	void ApplyGameplayAbilityDatas(class UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle, UObject* InSourceObject) const;
-	void ApplyGameplayEffectDatas(class UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle) const;
-	void ApplyAttributeSetDatas(class UVODAbilitySystemComponent* InASC, FVODAbilitySet_Handle* InHandle) const;
+	void ApplyGameplayAbilityDatas(class UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle, UObject* InSourceObject) const;
+	void ApplyGameplayEffectDatas(class UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle) const;
+	void ApplyAttributeSetDatas(class UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle) const;
 
 protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability", meta = (TitleProperty = Ability))
-	TArray<FVODGameplayAbilityData> GameplayAbilityDatas;
+	TArray<FGameplayAbilityData> GameplayAbilityDatas;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability", meta = (TitleProperty = Ability))
-	TArray<FVODGameplayEffectData> GameplayEffectDatas;
+	TArray<FGameplayEffectData> GameplayEffectDatas;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability", meta = (TitleProperty = Ability))
-	TArray<FVODGameplayAttributeSetData> AttributeSetDatas;
+	TArray<FGameplayAttributeSetData> AttributeSetDatas;
 };
