@@ -65,9 +65,6 @@ void AVODCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AVODCharacter::Move);
 
 	EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AVODCharacter::Look);
-
-	EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &AVODCharacter::Run);
-	EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &AVODCharacter::StopRun);
 }
 
 void AVODCharacter::Move(const FInputActionValue& InValue)
@@ -98,12 +95,4 @@ void AVODCharacter::Look(const FInputActionValue& InValue)
 
 	AddControllerYawInput(LookAxisVector.X);
 	AddControllerPitchInput(LookAxisVector.Y);
-}
-
-void AVODCharacter::Run()
-{
-}
-
-void AVODCharacter::StopRun()
-{
 }

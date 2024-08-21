@@ -35,11 +35,7 @@ protected:
 
 protected:
 	void Move(const struct FInputActionValue& InValue);
-
 	void Look(const struct FInputActionValue& InValue);
-
-	void Run();
-	void StopRun();
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
@@ -59,7 +55,4 @@ protected:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<const class UInputAction> LookAction;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<const class UInputAction> RunAction;
 };
