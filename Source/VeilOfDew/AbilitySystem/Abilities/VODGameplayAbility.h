@@ -1,7 +1,6 @@
 ﻿#pragma once
 
 // Default
-#include "CoreMinimal.h"
 
 // C++ Standard Library
 
@@ -28,7 +27,7 @@ enum class EAbilityActivationTiming : uint8
 	OnInitialized		// 활성화 상태로 시작
 };
 
-UCLASS()
+UCLASS(Abstract)
 class VEILOFDEW_API UVODGameplayAbility : public UGameplayAbility
 {
 	GENERATED_BODY()

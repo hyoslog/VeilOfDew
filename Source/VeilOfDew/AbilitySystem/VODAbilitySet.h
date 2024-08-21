@@ -94,12 +94,12 @@ private:
 	void ApplyAttributeSetDatas(class UVODAbilitySystemComponent* InASC, FAbilitySet_Handle* InHandle) const;
 
 protected:
-	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability", meta = (TitleProperty = Ability))
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability")
 	TArray<FGameplayAbilityData> GameplayAbilityDatas;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability", meta = (TitleProperty = Ability))
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability")
 	TArray<FGameplayEffectData> GameplayEffectDatas;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability", meta = (TitleProperty = Ability))
+	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Ability")
 	TArray<FGameplayAttributeSetData> AttributeSetDatas;
 };
